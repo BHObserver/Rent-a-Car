@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Route, Routes, Link,
+  Route, Routes, Link,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SignUpForm from './components/sessions/Signup';

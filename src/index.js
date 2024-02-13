@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Routes and Route
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -10,7 +10,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <Routes>
+        <Route path="*" element={<App />} />
+      </Routes>
     </Router>
   </Provider>,
 );
