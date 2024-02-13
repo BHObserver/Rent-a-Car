@@ -10,7 +10,6 @@ import {
   logoutFailure,
 } from '../../reducer/authSlice';
 
-
 export const signUp = (username, email, password) => async (dispatch) => {
   try {
     const response = await axios.post('/api/signup', { username, email, password });

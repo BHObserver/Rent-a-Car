@@ -37,7 +37,7 @@ const LoginForm = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <button onClick={handleClearError}>Clear Error</button>
+      <button type="button" onClick={handleClearError}>Clear Error</button>
     </div>
   );
 };

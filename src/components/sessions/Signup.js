@@ -16,9 +16,7 @@ const SignUpForm = () => {
     if (password === confirmPassword) {
       dispatch(signUp(username, email, password));
     } else {
-      // Handle password mismatch error
-      // For example, you can set an error state variable to display an error message
-      console.log("Passwords do not match");
+      console.log('Passwords do not match');
     }
   };
 
@@ -57,7 +55,7 @@ const SignUpForm = () => {
         />
         <button type="submit">Sign Up</button>
       </form>
-      <button onClick={handleClearError}>Clear Error</button>
+      <button type="button" onClick={handleClearError}>Clear Error</button>
     </div>
   );
 };
