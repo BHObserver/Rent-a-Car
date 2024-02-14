@@ -16,6 +16,7 @@ const SignUpForm = () => {
     if (password === confirmPassword) {
       dispatch(signUp(username, email, password));
     } else {
+      // eslint-disable-next-line
       console.log('Passwords do not match');
     }
   };
