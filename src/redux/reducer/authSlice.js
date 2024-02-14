@@ -30,17 +30,17 @@ const authSlice = createSlice({
     loginSuccess: (state, action) => {
       state.user = action.payload;
       state.error = null;
-      state.successMessage = '';
+      state.successMessage = 'Login Successful!!';
     },
     loginFailure: (state, action) => {
       state.error = action.payload;
-      state.successMessage = '';
+      state.successMessage = 'Login Faild, Please try again.';
     },
     logoutSuccess: (state) => {
       state.user = null;
       state.accessToken = null;
       state.error = null;
-      state.successMessage = '';
+      state.successMessage = 'Logout Successful!!';
     },
     logoutFailure: (state, action) => {
       state.error = action.payload;
