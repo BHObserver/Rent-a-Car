@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp, clearError } from '../../redux/session/actions/authActions';
+import './SignUpForm.css';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -64,38 +65,40 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h2>Sign Up</h2>
-      {/* Display error message if available */}
-      {showError && <div>{errorMessage}</div>}
-      {/* Display success message if available */}
-      {showSuccess && <div>{successMessageText}</div>}
+      {showError && <div className="error-message">{errorMessage}</div>}
+      {showSuccess && <div className="success-message">{successMessageText}</div>}
       <form onSubmit={handleSignUp}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="input-field"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="input-field"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="input-field"
         />
         <input
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          className="input-field"
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
       </form>
     </div>
   );

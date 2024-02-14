@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, clearError } from '../../redux/session/actions/authActions';
+import './LoginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -55,12 +56,10 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      {/* Display error message if available */}
-      {showError && <div>{errorMessage}</div>}
-      {/* Display success message if available */}
-      {showSuccess && <div>{successMessageText}</div>}
+      {showError && <div className="error-message">{errorMessage}</div>}
+      {showSuccess && <div className="success-message">{successMessageText}</div>}
 
       <form onSubmit={handleLogin}>
         <input
@@ -68,14 +67,16 @@ const LoginForm = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="input-field"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="input-field"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
     </div>
   );
