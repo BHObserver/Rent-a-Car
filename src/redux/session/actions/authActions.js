@@ -39,7 +39,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post('http://localhost:3000/api/v1/logout');
+    await axios.delete('http://localhost:3000/api/v1/logout');
     dispatch(logoutSuccess());
   } catch (error) {
     dispatch(logoutFailure(error.response.data));
