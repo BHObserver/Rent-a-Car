@@ -1,6 +1,7 @@
 // src/components/Sidebar.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Logout from '../sessions/Logout';
 /* import './Sidebar.css'; */
 
 const Sidebar = () => (
@@ -40,6 +41,9 @@ const Sidebar = () => (
           <NavLink to="/delete-item" className="nav-link" activeClassName="active">
             Delete Item
           </NavLink>
+          <li>
+            <Logout />
+          </li>
         </li>
       </ul>
     </nav>
