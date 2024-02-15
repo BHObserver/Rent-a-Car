@@ -1,25 +1,39 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import fetchCars from '../redux/actions/carActions';
+import '../App.css';
 
 const Profile = () => {
-  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const { cars, loading, error } = useSelector((state) => state.cars);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   return (
     <div>
-      <h2>Profile</h2>
-      {user ? (
+      <h2>Car List</h2>
+      {loading && <div>Loading...</div>}
+      {error && (
         <div>
-          <p>
-            Username:
-            {user.username}
-          </p>
-          <p>
-            Email:
-            {user.email}
-          </p>
+          Error:
+          {error}
         </div>
-      ) : (
-        <p>No user logged in.</p>
+      )}
+      {cars && cars.length > 0 && (
+        <div className="car-list">
+          {cars.map((car) => (
+            <div key={car.id} className="car-item">
+              <img src={car.photo} alt={car.name} className="car-photo" />
+              <div className="car-details">
+                <div className="car-name">{car.name}</div>
+                <div className="car-model">{car.model}</div>
+                <div className="car-details">{car.details}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
