@@ -19,12 +19,15 @@
 
 import React from 'react';
 import ImageCarousel from './ImageCarousel';
+import myImage from '../assets/images/food.png';
+import myImage1 from '../assets/images/home.png';
+import myImage2 from '../assets/images/school.png';
 
 const Image = () => {
-  const images = ["default.png", "food.png", "game.png", "home.png", "log.png", "school.png", "transport.png"];
+  const images = [myImage, myImage1, myImage2];
 
   // Construct the paths to the images
-  const imagePaths = images.map(image => `/assets/images/${image}`);
+  const imagePaths = images.map(image => `${image}`);
 
   return (
     <div className="my-images">
