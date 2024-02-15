@@ -9,7 +9,7 @@ import SignUpForm from './components/sessions/Signup';
 import LoginForm from './components/sessions/Login';
 import Profile from './components/Profile';
 import Sidebar from './components/navigation/Sidebar';
-import ReserveItemPage from './components/ReserveItemPage';
+import ReserveItemPage from './components/reservation/CarReservationForm';
 import AddItemPage from './components/AddItemPage';
 import { loginSuccess } from './redux/reducer/authSlice';
 import './App.css';
