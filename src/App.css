@@ -204,3 +204,141 @@ button[type="submit"]:hover {
   color: #6a9e09;
   font-weight: bold;
 }
+
+.carousel {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+.image-container {
+  display: flex;
+  overflow: hidden;
+  border: 2px solid;
+  background-color: salmon;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  /* display: none; */
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+#prevBtn {
+  left: 0;
+}
+
+#nextBtn {
+  right: 0;
+}
+/* =================================== */
+/* ImageCarousel.css */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-container {
+  display: flex;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: none; /* Hide all images by default */
+}
+
+.image-container img.active {
+  display: block; /* Display the active image */
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: #333;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ImageCarousel.css */
+
+/* .carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: #333;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+} */
+
+/* Image.css */
+
+/* .my-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.ImageCarousel {
+  width: 80%; 
+  max-width: 800px; 
+}
+ */
+

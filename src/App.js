@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import ReserveItemPage from './components/ReserveItemPage'; // Import ReserveItemPage component
 import AddItemPage from './components/AddItemPage'; // Import AddItemPage component
 import './App.css'; // Import CSS file for styles
+import Image from './components/Image'; // Import the Image component
 
 const Reserve = () => <h2>Reserve For Page</h2>;
 const MyReservations = () => <h2>My Reservations Page</h2>;
@@ -18,6 +19,7 @@ const App = () => {
         <Sidebar />
         <main className="contents">
           <Routes>
+            <Route path="/carousel" element={<Image />} /> {/* Add route for the Image component */}
             <Route path="/reserve" element={<Reserve />} />
             <Route path="/reserve-item" element={<ReserveItemPage />} /> {/* Link to ReserveItemPage */}
             <Route path="/my-reservations" element={<MyReservations />} />
