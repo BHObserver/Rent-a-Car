@@ -41,6 +41,11 @@ const Sidebar = () => {
               Delete Item
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/carousel" className="nav-link" activeClassName="active">
+              Image Carousel
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>
