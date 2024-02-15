@@ -30,6 +30,14 @@ const Profile = () => {
                 <div className="car-name">{car.name}</div>
                 <div className="car-model">{car.model}</div>
                 <div className="car-details">{car.details}</div>
+                <div className="car-city">
+                  City:
+                  {car.city}
+                </div>
+                <div className="car-cost">
+                  Cost:
+                  {car.cost}
+                </div>
               </div>
             </div>
           ))}
