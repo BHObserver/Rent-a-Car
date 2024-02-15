@@ -41,9 +41,11 @@ const Sidebar = () => (
           <NavLink to="/delete-item" className="nav-link" activeClassName="active">
             Delete Item
           </NavLink>
-          <li>
+        </li>
+        <li>
+          <NavLink to="/login" className="nav-link" activeClassName="active">
             <Logout />
-          </li>
+          </NavLink>
         </li>
       </ul>
     </nav>
