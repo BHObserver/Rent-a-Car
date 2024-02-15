@@ -9,6 +9,9 @@ const fetchCars = () => async (dispatch) => {
   dispatch({ type: FETCH_CARS_REQUEST });
   try {
     const response = await fetch('http://localhost:3000/api/v1/cars');
+    if (!response.ok) {
+      throw new Error('Failed to fetch cars');
+    }
     const data = await response.json();
     dispatch({ type: FETCH_CARS_SUCCESS, payload: data });
   } catch (error) {

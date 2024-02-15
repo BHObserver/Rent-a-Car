@@ -1,8 +1,7 @@
-// src/components/Sidebar.js
+// Sidebar.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Logout from '../sessions/Logout';
-/* import './Sidebar.css'; */
 
 const Sidebar = () => (
   <div className="sidebar">
@@ -12,8 +11,8 @@ const Sidebar = () => (
     <nav className="navigation">
       <ul>
         <li>
-          <NavLink to="/reserve" className="nav-link" activeClassName="active">
-            Reserved Items
+          <NavLink to="/profile" className="nav-link" activeClassName="active">
+            Home page
           </NavLink>
         </li>
         <li>
@@ -26,7 +25,6 @@ const Sidebar = () => (
             Reserve Item Page
           </NavLink>
         </li>
-
         <li>
           <NavLink to="/add-item1" className="nav-link" activeClassName="active">
             Add Item1

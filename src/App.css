@@ -203,3 +203,26 @@ button[type="submit"]:hover {
   color: #6a9e09;
   font-weight: bold;
 }
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.car-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.car-photo {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.car-details {
+  margin-top: 10px;
+  text-align: center;
+}

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './reducer/authSlice';
 import carReducer from './reducer/carReducer';
