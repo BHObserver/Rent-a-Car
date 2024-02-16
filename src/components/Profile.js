@@ -5,7 +5,7 @@ import '../App.css';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { cars, loading, error } = useSelector((state) => state.cars);
+  const { cars, loading, error } = useSelector((state) => state.car) || {};
 
   useEffect(() => {
     dispatch(fetchCars());

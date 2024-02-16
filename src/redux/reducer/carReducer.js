@@ -1,3 +1,4 @@
+// carReducer.js
 import {
   FETCH_CARS_REQUEST,
   FETCH_CARS_SUCCESS,
@@ -7,7 +8,7 @@ import {
 const initialState = {
   cars: [],
   loading: false,
-  error: null,
+  error: '',
 };
 
 const carReducer = (state = initialState, action) => {
@@ -16,14 +17,13 @@ const carReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: null, // Reset error state on request start
       };
     case FETCH_CARS_SUCCESS:
       return {
         ...state,
         loading: false,
-        cars: action.payload.cars,
-
+        cars: action.payload,
+        error: '',
       };
     case FETCH_CARS_FAILURE:
       return {

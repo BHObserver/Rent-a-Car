@@ -116,6 +116,7 @@ function CarReservationForm() {
             .filter((car) => {
               // Filter out cars that are already reserved for the selected date and time range
               const reservations = car.reservations || [];
+              console.log(reservations);
               const isAvailable = reservations.every((reservation) => {
                 const reservationStartTime = new Date(reservation.start_time);
                 const reservationEndTime = new Date(reservation.end_time);

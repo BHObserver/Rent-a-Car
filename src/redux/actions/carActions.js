@@ -12,7 +12,7 @@ const fetchCars = () => async (dispatch) => {
     if (!response.ok) {
       throw new Error('Failed to fetch cars');
     }
-    const data = await response.json();
+    const data = await response.json(); // Parse JSON response
     dispatch({ type: FETCH_CARS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: FETCH_CARS_FAILURE, payload: error.message });
