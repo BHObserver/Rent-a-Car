@@ -3,7 +3,6 @@ import {
   FETCH_CARS_REQUEST,
   FETCH_CARS_SUCCESS,
   FETCH_CARS_FAILURE,
-  DELETE_RESERVATION_SUCCESS,
 } from '../actions/carActionTypes';
 
 const initialState = {
@@ -32,13 +31,6 @@ const carReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-      };
-    case DELETE_RESERVATION_SUCCESS:
-      return {
-        ...state,
-        userReservations: state.userReservations.filter(
-          (reservation) => reservation.id !== action.payload,
-        ),
       };
     default:
       return state;
