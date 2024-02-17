@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserReservations } from '../../redux/actions/reservationActions';
+import { fetchUserReservations, deleteReservation } from '../../redux/actions/reservationActions';
 
-function UserReservations() {
+const DeleteCar = () => {
   const userId = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
-  const reservations = useSelector((state) => state.reservations.userReservations);
+  const userReservations = useSelector((state) => state.reservations.userReservations);
+  const [successNotice, setSuccessNotice] = useState(false);
   const isLoading = useSelector((state) => state.reservations.isLoading);
 
   useEffect(() => {
@@ -16,17 +17,22 @@ function UserReservations() {
     return <p>Loading reservations...</p>;
   }
 
-  console.log(userId.accessToken);
-  if (!reservations || reservations.length === 0) {
-    return <p>No reservations found.</p>;
-  }
+  const deleteReservationHandler = async (reservationId) => {
+    try {
+      await dispatch(deleteReservation(reservationId));
+      setSuccessNotice(true);
+    } catch (error) {
+      console.error('Error deleting reservation:', error);
+    }
+  };
 
   return (
     <div>
-      <h2>Your Reservations</h2>
-      <ul>
-        {reservations.map((reservation) => (
-          <li key={reservation.id}>
+      {userReservations.length === 0 ? (
+        <p>No reservations to delete.</p>
+      ) : (
+        userReservations.map((reservation) => (
+          <div key={reservation.id}>
             Reserved Date:
             {' '}
             {reservation.reserved_date}
@@ -45,11 +51,21 @@ function UserReservations() {
             , Total Cost:
             {' '}
             {reservation.total_cost}
-          </li>
-        ))}
-      </ul>
+
+            <button
+              type="button"
+              onClick={() => deleteReservationHandler(reservation.id)}
+            >
+              Delete
+            </button>
+          </div>
+        ))
+      )}
+      {successNotice && (
+        <p className="text-center text-sky-500 text-lg mt-4">Reservation deleted successfully!</p>
+      )}
     </div>
   );
-}
+};
 
-export default UserReservations;
+export default DeleteCar;
