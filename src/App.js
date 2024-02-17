@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SignUpForm from './components/sessions/Signup';
 import LoginForm from './components/sessions/Login';
 import Profile from './components/Profile';
-import DeleteCar from './components/deletecar/deleteCar';
+import DeleteCar from './components/car/DeleteCar';
 
 import Sidebar from './components/navigation/Sidebar';
 import Reserve from './components/reservation/CarReservationForm';
