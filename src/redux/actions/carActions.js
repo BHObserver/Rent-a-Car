@@ -5,9 +5,9 @@ import {
   CREATE_CAR_REQUEST,
   CREATE_CAR_SUCCESS,
   CREATE_CAR_FAILURE,
-  DELETE_RESERVATION_REQUEST,
-  DELETE_RESERVATION_SUCCESS,
-  DELETE_RESERVATION_FAILURE,
+  DELETE_CAR_REQUEST,
+  DELETE_CAR_SUCCESS,
+  DELETE_CAR_FAILURE,
 } from './carActionTypes';
 
 export const fetchCars = () => async (dispatch) => {
@@ -44,17 +44,17 @@ export const createCar = (carData) => async (dispatch) => {
   }
 };
 
-export const deleteReservation = (reservationId) => async (dispatch) => {
-  dispatch({ type: DELETE_RESERVATION_REQUEST });
+export const deleteCar = (carId) => async (dispatch) => {
+  dispatch({ type: DELETE_CAR_REQUEST });
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/reservations/${reservationId}`, {
+    const response = await fetch(`http://localhost:3000/api/v1/cars/${carId}`, {
       method: 'DELETE',
     });
     if (!response.ok) {
-      throw new Error('Failed to delete reservation');
+      throw new Error('Failed to delete car');
     }
-    dispatch({ type: DELETE_RESERVATION_SUCCESS, payload: reservationId });
+    dispatch({ type: DELETE_CAR_SUCCESS, payload: carId });
   } catch (error) {
-    dispatch({ type: DELETE_RESERVATION_FAILURE, payload: error.message });
+    dispatch({ type: DELETE_CAR_FAILURE, payload: error.message });
   }
 };
