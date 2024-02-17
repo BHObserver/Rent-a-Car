@@ -18,18 +18,22 @@ const DeleteCar = () => {
 
   return (
     <div>
-      {userReservations.map((reservation) => (
-        <div key={reservation.id}>
-          <img src={reservation.car.photo} alt={reservation.car.name} />
-          <p>{reservation.car.name}</p>
-          <button
-            type="button"
-            onClick={() => deleteReservationHandler(reservation.id)}
-          >
-            Delete
-          </button>
-        </div>
-      ))}
+      {userReservations.length === 0 ? (
+        <p>No reservations to delete.</p>
+      ) : (
+        userReservations.map((reservation) => (
+          <div key={reservation.id}>
+            <img src={reservation.car.photo} alt={reservation.car.name} />
+            <p>{reservation.car.name}</p>
+            <button
+              type="button"
+              onClick={() => deleteReservationHandler(reservation.id)}
+            >
+              Delete
+            </button>
+          </div>
+        ))
+      )}
       {successNotice && (
         <p className="text-center text-sky-500 text-lg mt-4">Reservation deleted successfully!</p>
       )}
