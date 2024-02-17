@@ -9,13 +9,11 @@ import SignUpForm from './components/sessions/Signup';
 import LoginForm from './components/sessions/Login';
 import Profile from './components/Profile';
 import Sidebar from './components/navigation/Sidebar';
-import ReserveItemPage from './components/reservation/CarReservationForm';
+import Reserve from './components/reservation/CarReservationForm';
+import ReserveItemPage from './components/reservation/UserReservations';
 import CreateCar from './components/car/CreateCarForm';
 import { loginSuccess } from './redux/reducer/authSlice';
 import './App.css';
-
-const Reserve = () => <h2>Reserve For Page</h2>;
-const MyReservations = () => <h2>My Reservations Page</h2>;
 
 const DeleteItem = () => <h2>Deleted Items Page</h2>;
 
@@ -42,8 +40,7 @@ const App = () => {
               <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/reserve" element={<Reserve />} />
-                <Route path="/reserve-item" element={<ReserveItemPage />} />
-                <Route path="/my-reservations" element={<MyReservations />} />
+                <Route path="/my-reservations" element={<ReserveItemPage />} />
                 <Route path="/add-item" element={<CreateCar />} />
                 <Route path="/delete-item" element={<DeleteItem />} />
                 <Route path="/" element={<Navigate to="/profile" />} />

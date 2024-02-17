@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCars } from '../../redux/actions/carActions';
-import createReservation from '../../redux/actions/reservationActions';
+import { createReservation } from '../../redux/actions/reservationActions';
 
 function CarReservationForm() {
   const [reservedDate, setReservedDate] = useState('');
@@ -12,6 +12,7 @@ function CarReservationForm() {
   const [totalCost, setTotalCost] = useState('');
   const [selectedCarId, setSelectedCarId] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [availableCars, setAvailableCars] = useState([]);
   const user = useSelector((state) => state.auth.user);
   const cars = useSelector((state) => state.car.cars.cars) || [];
   const dispatch = useDispatch();
@@ -48,9 +49,26 @@ function CarReservationForm() {
     }
   };
 
+  const handleFindAvailableCars = () => {
+    const selectedStartTime = new Date(startTime);
+    const selectedEndTime = new Date(endTime);
+    const availableCars = cars.filter((car) => {
+      const reservations = car.reservations || [];
+      return reservations.every((reservation) => {
+        const reservationStartTime = new Date(reservation.start_time);
+        const reservationEndTime = new Date(reservation.end_time);
+        return (
+          selectedEndTime <= reservationStartTime || selectedStartTime >= reservationEndTime
+        );
+      });
+    });
+    setAvailableCars(availableCars);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        {/* Your form inputs */}
         <label htmlFor="reservedDate">
           Reserved Date:
           <input
@@ -111,6 +129,10 @@ function CarReservationForm() {
           />
         </label>
         <br />
+        <button type="button" onClick={handleFindAvailableCars}>
+          Find Available Cars
+        </button>
+        <br />
         <label htmlFor="carSelection">
           Select a Car:
           <select
@@ -119,32 +141,15 @@ function CarReservationForm() {
             onChange={(e) => setSelectedCarId(e.target.value)}
           >
             <option value="">Select a Car</option>
-            {cars
-              .filter((car) => {
-              // Filter out cars that are already reserved for the selected date and time range
-                const reservations = car.reservations || [];
-                const isAvailable = reservations.every((reservation) => {
-                  const reservationStartTime = new Date(reservation.start_time);
-                  const reservationEndTime = new Date(reservation.end_time);
-                  const selectedStartTime = new Date(startTime);
-                  const selectedEndTime = new Date(endTime);
-                  // Check if the selected time range does not overlap with any existing reservation
-                  return (
-                    selectedEndTime <= reservationStartTime || selectedStartTime >= reservationEndTime
-                  );
-                });
-                return isAvailable;
-              })
-              .map((car) => (
-                <option key={car.id} value={car.id}>
-                  {car.make}
-                  {' '}
-                  {car.model}
-                </option>
-              ))}
+            {availableCars.map((car) => (
+              <option key={car.id} value={car.id}>
+                {car.make}
+                {' '}
+                {car.model}
+              </option>
+            ))}
           </select>
         </label>
-
         <br />
         <button type="submit">Submit</button>
       </form>

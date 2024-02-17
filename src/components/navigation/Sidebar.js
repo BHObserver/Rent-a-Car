@@ -16,13 +16,13 @@ const Sidebar = () => (
           </NavLink>
         </li>
         <li>
-          <NavLink to="/my-reservations" className="nav-link" activeClassName="active">
-            My Reservations
+          <NavLink to="/reserve" className="nav-link" activeClassName="active">
+            Reserve
           </NavLink>
         </li>
         <li>
-          <NavLink to="/reserve-item" className="nav-link" activeClassName="active">
-            Reserve Item Page
+          <NavLink to="/my-reservations" className="nav-link" activeClassName="active">
+            My Reservations
           </NavLink>
         </li>
         <li>

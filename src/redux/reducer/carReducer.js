@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   cars: [],
+  userReservations: [],
   loading: false,
   error: '',
 };
