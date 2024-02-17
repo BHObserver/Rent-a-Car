@@ -8,14 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import SignUpForm from './components/sessions/Signup';
 import LoginForm from './components/sessions/Login';
 import Profile from './components/Profile';
+import DeleteCar from './components/deletecar/deleteCar';
+
 import Sidebar from './components/navigation/Sidebar';
 import Reserve from './components/reservation/CarReservationForm';
 import ReserveItemPage from './components/reservation/UserReservations';
 import CreateCar from './components/car/CreateCarForm';
 import { loginSuccess } from './redux/reducer/authSlice';
 import './App.css';
-
-const DeleteItem = () => <h2>Deleted Items Page</h2>;
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const App = () => {
                 <Route path="/reserve" element={<Reserve />} />
                 <Route path="/my-reservations" element={<ReserveItemPage />} />
                 <Route path="/add-item" element={<CreateCar />} />
-                <Route path="/delete-item" element={<DeleteItem />} />
+                <Route path="/delete-item" element={<DeleteCar />} />
                 <Route path="/" element={<Navigate to="/profile" />} />
               </Routes>
             </main>
