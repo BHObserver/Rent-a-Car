@@ -1,23 +1,24 @@
 import axios from 'axios';
+import * as actionTypes from './reservationActionTypes';
 
 // Action creators for reservation creation success and failure
 const reservationCreateSuccess = (reservation) => ({
-  type: 'RESERVATION_CREATE_SUCCESS',
+  type: actionTypes.RESERVATION_CREATE_SUCCESS,
   payload: reservation,
 });
 
 const reservationCreateFailure = (error) => ({
-  type: 'RESERVATION_CREATE_FAILURE',
+  type: actionTypes.RESERVATION_CREATE_FAILURE,
   payload: error,
 });
 
 const fetchUserReservationsSuccess = (reservations) => ({
-  type: 'FETCH_USER_RESERVATIONS_SUCCESS',
+  type: actionTypes.FETCH_USER_RESERVATIONS_SUCCESS,
   payload: reservations,
 });
 
 const fetchUserReservationsFailure = (error) => ({
-  type: 'FETCH_USER_RESERVATIONS_FAILURE',
+  type: actionTypes.FETCH_USER_RESERVATIONS_FAILURE,
   payload: error,
 });
 
@@ -28,7 +29,7 @@ export const createReservation = (reservationData) => async (dispatch) => {
     dispatch(reservationCreateSuccess(response.data));
   } catch (error) {
     // Dispatch action for reservation creation failure
-    dispatch(reservationCreateFailure(error.response.data));
+    dispatch(reservationCreateFailure(error));
   }
 };
 
@@ -39,6 +40,21 @@ export const fetchUserReservations = (userId) => async (dispatch) => {
     dispatch(fetchUserReservationsSuccess(response.data));
   } catch (error) {
     // Dispatch action for failure to fetch user reservations
-    dispatch(fetchUserReservationsFailure(error.response.data));
+    dispatch(fetchUserReservationsFailure(error));
+  }
+};
+
+export const deleteReservation = (reservationId) => async (dispatch) => {
+  dispatch({ type: actionTypes.DELETE_RESERVATION_REQUEST });
+  try {
+    const response = await fetch(`http://localhost:3000/api/v1/reservations/${reservationId}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete reservation');
+    }
+    dispatch({ type: actionTypes.DELETE_RESERVATION_SUCCESS, payload: reservationId });
+  } catch (error) {
+    dispatch({ type: actionTypes.DELETE_RESERVATION_FAILURE, payload: error.message });
   }
 };
