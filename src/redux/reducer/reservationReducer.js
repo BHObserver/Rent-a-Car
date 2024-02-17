@@ -1,7 +1,11 @@
-// In your reducer file (reservationReducer.js or wherever your reducers are defined)
+import {
+  DELETE_RESERVATION_REQUEST,
+  DELETE_RESERVATION_SUCCESS,
+  DELETE_RESERVATION_FAILURE,
+} from '../actions/reservationActionTypes';
 
 const initialState = {
-  userReservations: [], // Initialize userReservations as an empty array
+  userReservations: [],
   isLoading: false,
   error: null,
 };
@@ -21,7 +25,25 @@ const reservationReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
-      // Other cases for reservation creation success, failure, etc.
+    case DELETE_RESERVATION_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case DELETE_RESERVATION_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        userReservations: state.userReservations.filter(
+          (reservation) => reservation.id !== action.payload,
+        ),
+      };
+    case DELETE_RESERVATION_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
