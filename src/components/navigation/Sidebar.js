@@ -25,19 +25,15 @@ const Sidebar = () => (
             My Reservations
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/add-item1" className="nav-link" activeClassName="active">
-            Add Item1
-          </NavLink>
-        </li>
+
         <li>
           <NavLink to="/add-item" className="nav-link" activeClassName="active">
-            Add Item Page
+            Add Car
           </NavLink>
         </li>
         <li>
           <NavLink to="/delete-item" className="nav-link" activeClassName="active">
-            Delete Item
+            Delete Car
           </NavLink>
         </li>
         <li>
