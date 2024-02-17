@@ -3,19 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserReservations } from '../../redux/actions/reservationActions';
 
 function UserReservations() {
-  const userId = useSelector((state) => state.auth.user.id);
+  const userId = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservations.userReservations);
   const isLoading = useSelector((state) => state.reservations.isLoading);
 
   useEffect(() => {
-    dispatch(fetchUserReservations(userId));
-  }, [dispatch, userId]);
+    dispatch(fetchUserReservations(userId.accessToken));
+  }, [dispatch, userId.accessToken]);
 
   if (isLoading) {
     return <p>Loading reservations...</p>;
   }
 
+  console.log(userId.accessToken);
   if (!reservations || reservations.length === 0) {
     return <p>No reservations found.</p>;
   }
