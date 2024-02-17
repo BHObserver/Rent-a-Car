@@ -36,6 +36,8 @@ export const fetchUserReservations = (userId) => async (dispatch) => {
   try {
     const response = await axios.get(`http://localhost:3000/api/v1/reservations?user_id=${userId}`);
     // Dispatch action for successful fetch of user reservations
+    console.log(userId);
+    console.log(response);
     dispatch(fetchUserReservationsSuccess(response.data));
   } catch (error) {
     // Dispatch action for failure to fetch user reservations
