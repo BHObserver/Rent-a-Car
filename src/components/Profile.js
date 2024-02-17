@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCars } from '../redux/actions/carActions';
-import '../App.css';
+import './Profile.css';
 
 const Profile = () => {
   const dispatch = useDispatch();
