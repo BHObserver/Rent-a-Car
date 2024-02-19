@@ -12,7 +12,7 @@ jest.mock('react-redux', () => ({
 describe('Logout component', () => {
   it('renders correctly', () => {
     const dispatch = jest.fn(); // Mock dispatch function
-    useDispatch.mockReturnValue(dispatch); // Mock useDispatch hook to return the mock dispatch function
+    useDispatch.mockReturnValue(dispatch);
 
     const component = renderer.create(<Logout />);
     const tree = component.toJSON();

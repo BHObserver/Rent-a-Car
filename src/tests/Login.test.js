@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import LoginForm from '../components/sessions/Login';
 import store from '../redux/store';
+
 describe('LoginForm component', () => {
   test('renders correctly', () => {
     const tree = renderer
@@ -12,7 +13,7 @@ describe('LoginForm component', () => {
           <Router>
             <LoginForm />
           </Router>
-        </Provider>
+        </Provider>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

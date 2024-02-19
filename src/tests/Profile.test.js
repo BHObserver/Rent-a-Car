@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import Profile from '../components/Profile';
 import configureStore from 'redux-mock-store';
+import Profile from '../components/Profile';
 
 const mockStore = configureStore([]);
 
@@ -13,8 +13,8 @@ describe('Profile component', () => {
       car: {
         cars: [], // Mock the cars array or provide sample data if needed
         loading: false,
-        error: null
-      }
+        error: null,
+      },
       // Add other slices of state if needed
     };
 
@@ -24,7 +24,7 @@ describe('Profile component', () => {
     const tree = renderer.create(
       <Provider store={store}>
         <Profile />
-      </Provider>
+      </Provider>,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
