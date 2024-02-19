@@ -3,7 +3,7 @@ import NotMatch from './routes/NotMatch';
 import MainPage from './routes/MainPage';
 import DetailsPage from './routes/DetailsPage';
 import Layout from './components/Layout';
-import './App.css';
+import AuthSection from './routes/AuthSection';
 
 function App() {
   <div className="App">
@@ -13,6 +13,7 @@ function App() {
         <Route path="details" element={<DetailsPage />} />
         <Route path="*" element={<NotMatch />} />
       </Route>
+      <Route path="auth" element={<AuthSection />} />
     </Routes>
   </div>;
 }
