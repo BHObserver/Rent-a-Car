@@ -1,6 +1,11 @@
+// DeleteCar.js
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  Typography, Button, List, ListItem, ListItemText,
+} from '@mui/material';
 import { fetchCars, deleteCar } from '../../redux/actions/carActions';
+/* import './DeleteCar.css'; */
 
 function DeleteCar() {
   const dispatch = useDispatch();
@@ -25,19 +30,21 @@ function DeleteCar() {
   const userCars = cars.filter((car) => car.user_id === Number(user.accessToken));
 
   return (
-    <div>
-      {successMessage && <p>{successMessage}</p>}
+    <div className="delete-car-container">
+      {successMessage && <Typography variant="body1">{successMessage}</Typography>}
       {userCars.length === 0 ? (
-        <p>You haven&apos;t added any car.</p>
+        <Typography variant="body1">You have not added any car.</Typography>
       ) : (
-        <ul>
+        <List>
           {userCars.map((car) => (
-            <li key={car.id}>
-              <span>{car.name}</span>
-              <button type="button" onClick={() => handleDelete(car.id)}>Delete</button>
-            </li>
+            <ListItem key={car.id}>
+              <ListItemText primary={car.name} />
+              <Button variant="contained" color="error" onClick={() => handleDelete(car.id)}>
+                Delete
+              </Button>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </div>
   );

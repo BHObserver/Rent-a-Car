@@ -1,5 +1,9 @@
+// CarReservationForm.js
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  Grid, TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem,
+} from '@mui/material';
 import { fetchCars } from '../../redux/actions/carActions';
 import { createReservation } from '../../redux/actions/reservationActions';
 
@@ -19,6 +23,7 @@ function CarReservationForm() {
   const user = useSelector((state) => state.auth.user);
   const cars = useSelector((state) => state.car.cars.cars) || [];
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchCars());
   }, [dispatch]);
@@ -27,15 +32,13 @@ function CarReservationForm() {
     event.preventDefault();
 
     const validateFields = () => {
-      if (
-        !reservedDate
+      if (!reservedDate
         || !startTime
         || !endTime
         || !startLocation
         || !destination
         || !totalCost
-        || !selectedCarId
-      ) {
+        || !selectedCarId) {
         setError('Please fill in all fields.');
         return false;
       }
@@ -77,7 +80,6 @@ function CarReservationForm() {
       // Hide the select car field
       setShowCarSelection(false);
     } catch (error) {
-      /* console.error('Error reserving car:', error); */
       setFailureMessage('Error reserving car');
     }
   };
@@ -89,106 +91,104 @@ function CarReservationForm() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="reservedDate">
-          Reserved Date:
-          <input
-            id="reservedDate"
-            type="date"
-            value={reservedDate}
-            onChange={(e) => setReservedDate(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label htmlFor="startTime">
-          Start Time:
-          <input
-            id="startTime"
-            type="datetime-local"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label htmlFor="endTime">
-          End Time:
-          <input
-            id="endTime"
-            type="datetime-local"
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label htmlFor="startLocation">
-          Start Location:
-          <input
-            id="startLocation"
-            type="text"
-            value={startLocation}
-            onChange={(e) => setStartLocation(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label htmlFor="destination">
-          Destination:
-          <input
-            id="destination"
-            type="text"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label htmlFor="totalCost">
-          Total Cost:
-          <input
-            id="totalCost"
-            type="number"
-            value={totalCost}
-            onChange={(e) => setTotalCost(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <div>
-          <button type="button" onClick={handleFindAvailableCars}>
-            Find Available Cars
-          </button>
-          <br />
-          {showCarSelection && (
-          <label htmlFor="carSelection">
-            Select a Car:
-            <select
-              id="carSelection"
-              value={selectedCarId}
-              onChange={(e) => setSelectedCarId(e.target.value)}
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Reserved Date"
+              type="date"
+              value={reservedDate}
+              onChange={(e) => setReservedDate(e.target.value)}
               required
-            >
-              <option value="">Select a Car</option>
-              {availableCars.map((car) => (
-                <option key={car.id} value={car.id}>
-                  {car.make}
-                  {' '}
-                  {car.model}
-                </option>
-              ))}
-            </select>
-          </label>
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Start Time"
+              type="datetime-local"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="End Time"
+              type="datetime-local"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Start Location"
+              value={startLocation}
+              onChange={(e) => setStartLocation(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Destination"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Total Cost"
+              type="number"
+              value={totalCost}
+              onChange={(e) => setTotalCost(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Button variant="contained" onClick={handleFindAvailableCars}>
+              Find Available Cars
+            </Button>
+          </Grid>
+          {showCarSelection && (
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel id="car-selection-label">Select a Car</InputLabel>
+                <Select
+                  labelId="car-selection-label"
+                  value={selectedCarId}
+                  onChange={(e) => setSelectedCarId(e.target.value)}
+                  required
+                >
+                  <MenuItem value="">Select a Car</MenuItem>
+                  {availableCars.map((car) => (
+                    <MenuItem key={car.id} value={car.id}>
+                      {car.make}
+                      {' '}
+                      {car.model}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
           )}
-        </div>
-        <br />
-        <button type="submit">Submit</button>
+          <Grid item xs={12}>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {successMessage && <p>{successMessage}</p>}
-      {failureMessage && <p>{failureMessage}</p>}
+      {error && <Typography variant="body1" color="error">{error}</Typography>}
+      {successMessage && <Typography variant="body1">{successMessage}</Typography>}
+      {failureMessage && <Typography variant="body1">{failureMessage}</Typography>}
     </div>
   );
 }

@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { login, clearError } from '../../redux/session/actions/authActions';
 import './LoginForm.css';
 
@@ -11,42 +13,16 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // State to manage the visibility of the error message
-  const [showError, setShowError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
-  // State to manage the visibility of the success message
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [successMessageText, setSuccessMessageText] = useState('');
-
-  // Effect to show the error message for 3 seconds when error changes
+  // Effect to clear error after 3 seconds
   useEffect(() => {
-    let timer;
+    let errorTimer;
     if (error) {
-      setShowError(true);
-      setErrorMessage(error.errors ? error.errors[0] : 'An error occurred');
-      timer = setTimeout(() => {
-        setShowError(false);
-        setErrorMessage('');
+      errorTimer = setTimeout(() => {
         dispatch(clearError());
       }, 3000);
     }
-    return () => clearTimeout(timer);
+    return () => clearTimeout(errorTimer);
   }, [error, dispatch]);
-
-  // Effect to show the success message for 3 seconds when success message changes
-  useEffect(() => {
-    let timer;
-    if (successMessage) {
-      setShowSuccess(true);
-      setSuccessMessageText(successMessage);
-      timer = setTimeout(() => {
-        setShowSuccess(false);
-        setSuccessMessageText('');
-      }, 3000);
-    }
-    return () => clearTimeout(timer);
-  }, [successMessage]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -56,27 +32,35 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      {showError && <div className="error-message">{errorMessage}</div>}
-      {showSuccess && <div className="success-message">{successMessageText}</div>}
+    <div className="background">
 
-      <form onSubmit={handleLogin}>
+      {error && <p className="error-message">{error}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      <form className="login-form" onSubmit={handleLogin}>
+        <h3>Login Here</h3>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
+          id="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="input-field"
+          required
         />
+        <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="input-field"
+          required
         />
-        <button type="submit" className="login-button">Login</button>
+        <button type="submit">Login</button>
+        <p>
+          Don&apos;t have an account yet?
+          <Link to="/signup">Sign up here.</Link>
+        </p>
       </form>
     </div>
   );

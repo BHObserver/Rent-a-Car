@@ -1,5 +1,9 @@
+// Profile.js
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  Grid, Card, CardContent, CardMedia, Typography, CircularProgress,
+} from '@mui/material';
 import { fetchCars } from '../redux/actions/carActions';
 import './Profile.css';
 
@@ -12,36 +16,58 @@ const Profile = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h2>Car List</h2>
-      {loading && <div>Loading...</div>}
+    <div className="profile-container">
+      <Typography variant="h4" gutterBottom>
+        Car List
+      </Typography>
+      {loading && <CircularProgress />}
       {error && (
-        <div>
+        <Typography variant="body1" color="error">
           Error:
+          {' '}
           {error}
-        </div>
+        </Typography>
       )}
       {cars && cars.length > 0 && (
-        <div className="car-list">
+        <Grid container spacing={3}>
           {cars.map((car) => (
-            <div key={car.id} className="car-item">
-              <img src={car.photo} alt={car.name} className="car-photo" />
-              <div className="car-details">
-                <div className="car-name">{car.name}</div>
-                <div className="car-model">{car.model}</div>
-                <div className="car-details">{car.details}</div>
-                <div className="car-city">
-                  City:
-                  {car.city}
-                </div>
-                <div className="car-cost">
-                  Cost:
-                  {car.cost}
-                </div>
-              </div>
-            </div>
+            <Grid item xs={12} sm={6} md={4} key={car.id}>
+              <Card>
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={car.photo}
+                  alt={car.name}
+                />
+                <CardContent>
+                  <Typography variant="h6" component="div" gutterBottom>
+                    {car.name}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" gutterBottom>
+                    Model:
+                    {' '}
+                    {car.model}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" gutterBottom>
+                    Description:
+                    {' '}
+                    {car.description}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" gutterBottom>
+                    City:
+                    {' '}
+                    {car.city}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Cost:
+                    {' '}
+                    {car.cost}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
           ))}
-        </div>
+        </Grid>
       )}
     </div>
   );

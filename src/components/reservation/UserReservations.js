@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Typography, Button, CircularProgress } from '@mui/material';
 import { fetchUserReservations, deleteReservation } from '../../redux/actions/reservationActions';
 
-const DeleteCar = () => {
+const UserReservations = () => {
   const userId = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const userReservations = useSelector((state) => state.reservations.userReservations);
@@ -13,10 +14,6 @@ const DeleteCar = () => {
     dispatch(fetchUserReservations(userId.accessToken));
   }, [dispatch, userId.accessToken]);
 
-  if (isLoading) {
-    return <p>Loading reservations...</p>;
-  }
-
   const deleteReservationHandler = async (reservationId) => {
     try {
       await dispatch(deleteReservation(reservationId));
@@ -26,46 +23,46 @@ const DeleteCar = () => {
     }
   };
 
+  if (isLoading) {
+    return <CircularProgress />;
+  }
+
   return (
-    <div>
+    <div className="delete-car-container">
       {userReservations.length === 0 ? (
-        <p>No reservations to delete.</p>
+        <Typography variant="body1">No reservations to delete.</Typography>
       ) : (
         userReservations.map((reservation) => (
-          <div key={reservation.id}>
-            Reserved Date:
-            {' '}
-            {reservation.reserved_date}
-            , Start Time:
-            {' '}
-            {reservation.start_time}
-            , End Time:
-            {' '}
-            {reservation.end_time}
-            , Start Location:
-            {' '}
-            {reservation.start_location}
-            , Destination:
-            {' '}
-            {reservation.destination}
-            , Total Cost:
-            {' '}
-            {reservation.total_cost}
-
-            <button
-              type="button"
-              onClick={() => deleteReservationHandler(reservation.id)}
-            >
+          <div key={reservation.id} className="reservation-item">
+            <Typography variant="body1">
+              Reserved Date:
+              {' '}
+              {reservation.reserved_date}
+              , Start Time:
+              {' '}
+              {reservation.start_time}
+              , End Time:
+              {' '}
+              {reservation.end_time}
+              , Start Location:
+              {' '}
+              {reservation.start_location}
+              , Destination:
+              {' '}
+              {reservation.destination}
+              , Total Cost:
+              {' '}
+              {reservation.total_cost}
+            </Typography>
+            <Button variant="contained" color="error" onClick={() => deleteReservationHandler(reservation.id)}>
               Delete
-            </button>
+            </Button>
           </div>
         ))
       )}
-      {successNotice && (
-        <p className="text-center text-sky-500 text-lg mt-4">Reservation deleted successfully!</p>
-      )}
+      {successNotice && <Typography variant="body1" className="success-notice">Reservation deleted successfully!</Typography>}
     </div>
   );
 };
 
-export default DeleteCar;
+export default UserReservations;

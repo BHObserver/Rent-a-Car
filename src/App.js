@@ -9,10 +9,9 @@ import SignUpForm from './components/sessions/Signup';
 import LoginForm from './components/sessions/Login';
 import Profile from './components/Profile';
 import DeleteCar from './components/car/DeleteCar';
-
 import Sidebar from './components/navigation/Sidebar';
 import Reserve from './components/reservation/CarReservationForm';
-import ReserveItemPage from './components/reservation/UserReservations';
+import UserReservations from './components/reservation/UserReservations';
 import CreateCar from './components/car/CreateCarForm';
 import { loginSuccess } from './redux/reducer/authSlice';
 import './App.css';
@@ -40,7 +39,7 @@ const App = () => {
               <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/reserve" element={<Reserve />} />
-                <Route path="/my-reservations" element={<ReserveItemPage />} />
+                <Route path="/my-reservations" element={<UserReservations />} />
                 <Route path="/add-item" element={<CreateCar />} />
                 <Route path="/delete-item" element={<DeleteCar />} />
                 <Route path="/" element={<Navigate to="/profile" />} />

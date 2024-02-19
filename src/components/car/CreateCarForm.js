@@ -1,6 +1,9 @@
+// CarForm.js
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { TextField, Button, Typography } from '@mui/material';
 import { createCar } from '../../redux/actions/carActions';
+/* import './CarForm.css'; */
 
 function CarForm() {
   const [name, setName] = useState('');
@@ -9,7 +12,6 @@ function CarForm() {
   const [year, setYear] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const user = useSelector((state) => state.auth.user);
-
   const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
@@ -36,47 +38,46 @@ function CarForm() {
   };
 
   return (
-    <div>
+    <div className="car-form-container">
       <form onSubmit={handleSubmit}>
-        <input
-          id="name"
-          type="text"
+        <TextField
+          fullWidth
+          label="Name"
           value={name}
-          placeholder="Name"
           onChange={(e) => setName(e.target.value)}
           required
         />
         <br />
-        <input
-          id="make"
-          type="text"
+        <TextField
+          fullWidth
+          label="Make"
           value={make}
-          placeholder="Make"
           onChange={(e) => setMake(e.target.value)}
           required
         />
         <br />
-        <input
-          id="model"
-          type="text"
+        <TextField
+          fullWidth
+          label="Model"
           value={model}
-          placeholder="Model"
           onChange={(e) => setModel(e.target.value)}
           required
         />
         <br />
-        <input
-          id="year"
+        <TextField
+          fullWidth
+          label="Year"
           type="number"
           value={year}
-          placeholder="Year"
           onChange={(e) => setYear(e.target.value)}
           required
         />
         <br />
-        <button type="submit">Create Car</button>
+        <Button type="submit" variant="contained" color="primary">
+          Create Car
+        </Button>
       </form>
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && <Typography variant="body1">{successMessage}</Typography>}
     </div>
   );
 }
