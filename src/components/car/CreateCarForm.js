@@ -1,15 +1,16 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 // CarForm.js
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, Button, Typography } from '@mui/material';
 import { createCar } from '../../redux/actions/carActions';
-/* import './CarForm.css'; */
+import './CreateCarForm.css';
 
 function CarForm() {
   const [name, setName] = useState('');
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
+  const [photoUrl, setPhotoUrl] = useState(''); // State for photo URL
   const [successMessage, setSuccessMessage] = useState('');
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -20,64 +21,49 @@ function CarForm() {
       name,
       make,
       model,
-      year: parseInt(year, 10), // Ensure year is parsed as an integer
+      year: parseInt(year, 10),
+      photoUrl, // Include photo URL in the car data
       user_id: user.accessToken,
     };
     try {
       await dispatch(createCar(carData));
       setSuccessMessage('Car created successfully!');
-      // Reset form fields after successful submission
       setName('');
       setMake('');
       setModel('');
       setYear('');
+      setPhotoUrl(''); // Reset photo URL state
     } catch (error) {
       console.error('Error creating car:', error);
-      // Handle error if needed
     }
   };
 
   return (
     <div className="car-form-container">
       <form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          label="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <br />
-        <TextField
-          fullWidth
-          label="Make"
-          value={make}
-          onChange={(e) => setMake(e.target.value)}
-          required
-        />
-        <br />
-        <TextField
-          fullWidth
-          label="Model"
-          value={model}
-          onChange={(e) => setModel(e.target.value)}
-          required
-        />
-        <br />
-        <TextField
-          fullWidth
-          label="Year"
-          type="number"
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-          required
-        />
-        <br />
-        <Button type="submit" variant="contained" color="primary">
-          Create Car
-        </Button>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        </label>
+        <label>
+          Make:
+          <input type="text" value={make} onChange={(e) => setMake(e.target.value)} required />
+        </label>
+        <label>
+          Model:
+          <input type="text" value={model} onChange={(e) => setModel(e.target.value)} required />
+        </label>
+        <label>
+          Year:
+          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
+        </label>
+        <label>
+          Photo URL:
+          <input type="text" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
+        </label>
+        <button type="submit">Create Car</button>
       </form>
-      {successMessage && <Typography variant="body1">{successMessage}</Typography>}
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 }

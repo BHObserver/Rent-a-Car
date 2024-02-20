@@ -1,17 +1,24 @@
-// Sidebar.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, Divider,
 } from '@mui/material';
+import { styled } from '@mui/system';
 import HomeIcon from '@mui/icons-material/Home';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
-import LogoIcon from '@mui/icons-material/DriveEta';
 import LogoutIcon from '@mui/icons-material/Logout';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/session/actions/authActions';
+import logo from '../../assets/images/logo.png';
+
+const StyledList = styled(List)({
+  display: 'flex',
+});
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -35,9 +42,11 @@ const Sidebar = () => {
       }}
     >
       <Typography variant="h6" align="center" sx={{ pt: 2, pb: 2 }}>
-        <LogoIcon fontSize="large" />
+        <div className="logo-container">
+          <img src={logo} alt="Logo" style={{ width: '100px', height: 'auto' }} />
+          <h2>RENT A CAR</h2>
+        </div>
         {' '}
-        Your Logo
       </Typography>
       <Divider />
       <List>
@@ -69,6 +78,18 @@ const Sidebar = () => {
           <ListItemText primary="Logout" />
         </ListItem>
       </List>
+      {/* Social Media Icons */}
+      <StyledList>
+        <ListItem button component="a" href="https://www.facebook.com">
+          <ListItemIcon><FacebookIcon /></ListItemIcon>
+        </ListItem>
+        <ListItem button component="a" href="https://www.twitter.com">
+          <ListItemIcon><TwitterIcon /></ListItemIcon>
+        </ListItem>
+        <ListItem button component="a" href="https://www.instagram.com">
+          <ListItemIcon><InstagramIcon /></ListItemIcon>
+        </ListItem>
+      </StyledList>
     </Drawer>
   );
 };

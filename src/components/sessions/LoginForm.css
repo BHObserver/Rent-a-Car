@@ -57,11 +57,12 @@ label {
   font-weight: 500;
 }
 
-input {
+.login-form input {
   display: block;
   height: 50px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.87);
+  box-shadow: 1px 1px 2px black;
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
@@ -83,4 +84,21 @@ button {
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.submit-btn {
+  background: rgb(72, 72, 219);
+  color: white;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 2px black;
+}
+
+.error-message {
+  position: relative;
+  right: 400px;
+}
+
+.success-message {
+  position: relative;
+  right: 380px;
 }

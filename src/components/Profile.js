@@ -1,75 +1,77 @@
 // Profile.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Grid, Card, CardContent, CardMedia, Typography, CircularProgress,
-} from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
+import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 import { fetchCars } from '../redux/actions/carActions';
-import './Profile.css';
+import CarCarousel from './CarCarousel';
+import CarCard from './CarCard';
+
+const Container = styled('div')({
+  textAlign: 'center',
+  padding: '20px',
+});
+
+const Spinner = styled(CircularProgress)({
+  margin: '20px',
+});
+
+const ErrorText = styled(Typography)({
+  margin: '20px',
+});
 
 const Profile = () => {
   const dispatch = useDispatch();
   const { cars, loading, error } = useSelector((state) => state.car.cars);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchCars());
   }, [dispatch]);
 
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => Math.max(0, prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => Math.min(cars.length - 1, prevIndex + 1));
+  };
+
+  // Callback function to handle navigation to car details page
+  const handleCardClick = (carId) => {
+    console.log(`Navigating to car details for car with ID: ${carId}`);
+    navigate(`/cars/${carId}`); // Use navigate to navigate to the car details page
+  };
+
   return (
-    <div className="profile-container">
+    <Container>
       <Typography variant="h4" gutterBottom>
         Car List
       </Typography>
-      {loading && <CircularProgress />}
+      {loading && <Spinner />}
       {error && (
-        <Typography variant="body1" color="error">
+        <ErrorText variant="body1" color="error">
           Error:
           {' '}
           {error}
-        </Typography>
+        </ErrorText>
       )}
       {cars && cars.length > 0 && (
-        <Grid container spacing={3}>
+        <CarCarousel
+          cars={cars}
+          currentIndex={currentIndex}
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+        >
+          {/* Render CarCard inside CarCarousel */}
           {cars.map((car) => (
-            <Grid item xs={12} sm={6} md={4} key={car.id}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={car.photo}
-                  alt={car.name}
-                />
-                <CardContent>
-                  <Typography variant="h6" component="div" gutterBottom>
-                    {car.name}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" gutterBottom>
-                    Model:
-                    {' '}
-                    {car.model}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" gutterBottom>
-                    Description:
-                    {' '}
-                    {car.description}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" gutterBottom>
-                    City:
-                    {' '}
-                    {car.city}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Cost:
-                    {' '}
-                    {car.cost}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+            <CarCard key={car.id} car={car} onCardClick={handleCardClick} />
           ))}
-        </Grid>
+        </CarCarousel>
       )}
-    </div>
+    </Container>
   );
 };
 

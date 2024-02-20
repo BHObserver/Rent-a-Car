@@ -18,3 +18,9 @@ body {
 .contents h2 {
   margin-bottom: 20px;
 }
+
+
+* {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

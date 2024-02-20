@@ -1,11 +1,10 @@
-// CarReservationForm.js
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  Grid, TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem,
-} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { fetchCars } from '../../redux/actions/carActions';
 import { createReservation } from '../../redux/actions/reservationActions';
+import './CarReservationForm.css';
 
 function CarReservationForm() {
   const [reservedDate, setReservedDate] = useState('');
@@ -23,6 +22,7 @@ function CarReservationForm() {
   const user = useSelector((state) => state.auth.user);
   const cars = useSelector((state) => state.car.cars.cars) || [];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchCars());
@@ -63,7 +63,6 @@ function CarReservationForm() {
     try {
       await dispatch(createReservation(reservationData));
       setSuccessMessage('Car reserved successfully!');
-      // Reset all form fields
       setReservedDate('');
       setStartTime('');
       setEndTime('');
@@ -72,12 +71,9 @@ function CarReservationForm() {
       setTotalCost('');
       setSelectedCarId('');
       setError('');
-      // Dispatch action to fetch updated list of cars
       dispatch(fetchCars());
-      // Update list of available cars in component state
       const updatedAvailableCars = cars.filter((car) => car.available);
       setAvailableCars(updatedAvailableCars);
-      // Hide the select car field
       setShowCarSelection(false);
     } catch (error) {
       setFailureMessage('Error reserving car');
@@ -90,105 +86,78 @@ function CarReservationForm() {
     setShowCarSelection(true);
   };
 
+  // Check if the user is on the reservation page
+  const isOnReservationPage = window.location.pathname === '/reserve';
+
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Reserved Date"
-              type="date"
-              value={reservedDate}
-              onChange={(e) => setReservedDate(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Start Time"
-              type="datetime-local"
-              value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="End Time"
-              type="datetime-local"
-              value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Start Location"
-              value={startLocation}
-              onChange={(e) => setStartLocation(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Destination"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Total Cost"
-              type="number"
-              value={totalCost}
-              onChange={(e) => setTotalCost(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Button variant="contained" onClick={handleFindAvailableCars}>
-              Find Available Cars
-            </Button>
-          </Grid>
-          {showCarSelection && (
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel id="car-selection-label">Select a Car</InputLabel>
-                <Select
-                  labelId="car-selection-label"
-                  value={selectedCarId}
-                  onChange={(e) => setSelectedCarId(e.target.value)}
-                  required
-                >
-                  <MenuItem value="">Select a Car</MenuItem>
-                  {availableCars.map((car) => (
-                    <MenuItem key={car.id} value={car.id}>
-                      {car.make}
-                      {' '}
-                      {car.model}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-          )}
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      {error && <Typography variant="body1" color="error">{error}</Typography>}
-      {successMessage && <Typography variant="body1">{successMessage}</Typography>}
-      {failureMessage && <Typography variant="body1">{failureMessage}</Typography>}
+    <div className="reservation-page">
+      <button type="button" onClick={() => navigate('/profile')}>Back to Profile</button>
+      <style>
+        {`
+          .MuiDrawer-root.MuiDrawer-docked.css-q56gz0-MuiDrawer-docked {
+            display: ${isOnReservationPage ? 'none' : 'block'};
+          }
+          main {
+            background-image: linear-gradient(#96bf01ad, #a3cb14bc), url(https://www.travelperk.com/wp-content/uploads/car-rental-companies-1-scaled.jpg);
+            background-size: cover;
+          }
+        `}
+      </style>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Reserved Date:
+            <input type="date" value={reservedDate} onChange={(e) => setReservedDate(e.target.value)} required />
+          </label>
+          <label>
+            Start Time:
+            <input type="datetime-local" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
+          </label>
+          <label>
+            End Time:
+            <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
+          </label>
+          <label>
+            Start Location:
+            <input type="text" value={startLocation} onChange={(e) => setStartLocation(e.target.value)} required />
+          </label>
+          <label>
+            Destination:
+            <input type="text" value={destination} onChange={(e) => setDestination(e.target.value)} required />
+          </label>
+          <label>
+            Total Cost:
+            <input type="number" value={totalCost} onChange={(e) => setTotalCost(e.target.value)} required />
+          </label>
+          <div className="button-container">
+            <button type="button" onClick={handleFindAvailableCars}>Find Available Cars</button>
+            {showCarSelection && (
+            <label>
+              Select a Car:
+              <select
+                value={selectedCarId}
+                onChange={(e) => setSelectedCarId(e.target.value)}
+                required
+              >
+                <option value="">Select a Car</option>
+                {availableCars.map((car) => (
+                  <option key={car.id} value={car.id}>
+                    {car.make}
+                    {' '}
+                    {car.model}
+                  </option>
+                ))}
+              </select>
+            </label>
+            )}
+            <button type="submit">Submit</button>
+          </div>
+
+        </form>
+        {error && <p className="error">{error}</p>}
+        {successMessage && <p>{successMessage}</p>}
+        {failureMessage && <p>{failureMessage}</p>}
+      </div>
     </div>
   );
 }

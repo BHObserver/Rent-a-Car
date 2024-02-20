@@ -17,6 +17,7 @@
 }
 
 .signup-container {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
@@ -36,7 +37,7 @@
   line-height: 42px;
   text-align: center;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #000;
 }
 
 .input-field {
@@ -45,14 +46,22 @@
   height: 50px;
   background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
+  box-shadow: 1px 1px 2px black;
   padding: 0 10px;
   margin: 8px 0;
   font-size: 14px;
   font-weight: 300;
   color: #ffffff;
+  border: none;
+  outline: none;
 }
 
 .signup-button {
-  width: 100%;
-  background-color: #ffffff
+  background: rgb(72, 72, 219);
+  color: white;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: 1px 1px 2px black;
+  outline: none;
 }
+
