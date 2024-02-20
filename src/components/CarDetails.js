@@ -1,52 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { CircularProgress, Typography } from '@mui/material';
 import { fetchCarById } from '../redux/actions/carActions';
 
-const CarDetails = ({ carId }) => {
+const CarDetails = () => {
   const dispatch = useDispatch();
-  const [carDetails, setCarDetails] = useState(null);
-  const isLoading = useSelector((state) => state.car.isLoading);
+  const { id } = useParams();
+  const { car, isLoading, error } = useSelector((state) => state.car);
+  const carId = Number(id);
+  console.log(useSelector((state) => state));
+  console.log(car);
 
   useEffect(() => {
     dispatch(fetchCarById(carId));
   }, [dispatch, carId]);
 
-  console.log(carDetails);
-  const car = useSelector((state) => state.car.car);
+  if (isLoading) {
+    return <CircularProgress />;
+  }
 
-  useEffect(() => {
-    if (car) {
-      setCarDetails(car);
-    }
-  }, [car]);
-
-  if (isLoading || !carDetails) {
-    return <p>Loading...</p>;
+  if (error || !car) {
+    return <Typography variant="body1" color="error">Error fetching car details</Typography>;
   }
 
   return (
     <div>
-      <h1>{carDetails.name}</h1>
-      <img src={carDetails.photo_url} alt={carDetails.name} />
-      <p>
+      <Typography variant="h1">{car.name}</Typography>
+      <img src={car.photo_url} alt={car.name} />
+      <Typography variant="body1">
         Make:
-        {carDetails.make}
-      </p>
-      <p>
+        {' '}
+        {car.make}
+      </Typography>
+      <Typography variant="body1">
         Model:
-        {carDetails.model}
-      </p>
-      <p>
+        {' '}
+        {car.model}
+      </Typography>
+      <Typography variant="body1">
         Year:
-        {carDetails.year}
-      </p>
+        {' '}
+        {car.year}
+      </Typography>
     </div>
   );
-};
-
-CarDetails.propTypes = {
-  carId: PropTypes.number.isRequired,
 };
 
 export default CarDetails;

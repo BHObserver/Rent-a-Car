@@ -44,7 +44,7 @@ const App = () => {
                 <Route path="/add-item" element={<CreateCar />} />
                 <Route path="/delete-item" element={<DeleteCar />} />
                 <Route path="/" element={<Navigate to="/profile" />} />
-                <Route path="/cars/:id" component={CarDetails} />
+                <Route path="/cars/:id" element={<CarDetails />} />
               </Routes>
             </main>
           </>

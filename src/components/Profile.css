@@ -10,28 +10,26 @@
   position: relative;
 }
 
-/* Styles for the previous button */
 .prev-btn {
   position: absolute;
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
   background-color: transparent;
-  color: #000; /* Change color as needed */
+  color: #000;
   border: none;
   font-size: 24px;
   cursor: pointer;
   outline: none;
 }
 
-/* Styles for the next button */
 .next-btn {
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
   background-color: transparent;
-  color: #c79a12cd; /* Change color as needed */
+  color: #c79a12cd;
   border: none;
   font-size: 24px;
   cursor: pointer;

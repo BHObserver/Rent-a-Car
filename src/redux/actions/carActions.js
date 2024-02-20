@@ -30,7 +30,7 @@ export const fetchCars = () => async (dispatch) => {
 export const fetchCarById = (carId) => async (dispatch) => {
   dispatch({ type: FETCH_CAR_REQUEST });
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/cars/?id=${carId}`);
+    const response = await fetch(`http://localhost:3000/api/v1/cars/${carId}`);
     if (!response.ok) {
       throw new Error('Failed to fetch car details');
     }
