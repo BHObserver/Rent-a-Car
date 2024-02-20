@@ -1,9 +1,8 @@
 body {
   background-image: url('assets/images/bg.jpg');
-  background-size: cover; 
+  background-size: cover;
   background-repeat: no-repeat;
 }
-
 
 .app {
   display: flex;
@@ -18,7 +17,6 @@ body {
 .contents h2 {
   margin-bottom: 20px;
 }
-
 
 * {
   overflow-x: hidden;

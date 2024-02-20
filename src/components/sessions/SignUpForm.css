@@ -1,7 +1,7 @@
 /* SignUpForm.css */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -51,7 +51,7 @@
   margin: 8px 0;
   font-size: 14px;
   font-weight: 300;
-  color: #ffffff;
+  color: #fff;
   border: none;
   outline: none;
 }
@@ -64,4 +64,3 @@
   box-shadow: 1px 1px 2px black;
   outline: none;
 }
-
