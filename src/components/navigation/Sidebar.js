@@ -1,0 +1,97 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+  Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, Divider,
+} from '@mui/material';
+import { styled } from '@mui/system';
+import HomeIcon from '@mui/icons-material/Home';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import DeleteIcon from '@mui/icons-material/Delete';
+import LogoutIcon from '@mui/icons-material/Logout';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/session/actions/authActions';
+import logo from '../../assets/images/logo.png';
+
+const StyledList = styled(List)({
+  display: 'flex',
+});
+
+const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  return (
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: 250,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: 250,
+          boxSizing: 'border-box',
+          background: 'linear-gradient(180deg, #009688 0%, #00796B 100%)', // Gradient background
+          color: '#fff', // Text color
+        },
+      }}
+    >
+      <Typography variant="h6" align="center" sx={{ pt: 2, pb: 2 }}>
+        <div className="logo-container">
+          <img src={logo} alt="Logo" style={{ width: '100px', height: 'auto' }} />
+          <h2>RENT A CAR</h2>
+        </div>
+        {' '}
+      </Typography>
+      <Divider />
+      <List>
+        <ListItem button component={NavLink} to="/profile" activeClassName="active">
+          <ListItemIcon><HomeIcon /></ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button component={NavLink} to="/reserve" activeClassName="active">
+          <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
+          <ListItemText primary="Reserve" />
+        </ListItem>
+        <ListItem button component={NavLink} to="/my-reservations" activeClassName="active">
+          <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
+          <ListItemText primary="My Reservations" />
+        </ListItem>
+        <ListItem button component={NavLink} to="/add-item" activeClassName="active">
+          <ListItemIcon><PlaylistAddIcon /></ListItemIcon>
+          <ListItemText primary="Add Car" />
+        </ListItem>
+        <ListItem button component={NavLink} to="/delete-item" activeClassName="active">
+          <ListItemIcon><DeleteIcon /></ListItemIcon>
+          <ListItemText primary="Delete Car" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button onClick={handleLogout} to="/login">
+          <ListItemIcon><LogoutIcon /></ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
+      </List>
+      {/* Social Media Icons */}
+      <StyledList>
+        <ListItem button component="a" href="https://www.facebook.com">
+          <ListItemIcon><FacebookIcon /></ListItemIcon>
+        </ListItem>
+        <ListItem button component="a" href="https://www.twitter.com">
+          <ListItemIcon><TwitterIcon /></ListItemIcon>
+        </ListItem>
+        <ListItem button component="a" href="https://www.instagram.com">
+          <ListItemIcon><InstagramIcon /></ListItemIcon>
+        </ListItem>
+      </StyledList>
+    </Drawer>
+  );
+};
+
+export default Sidebar;
