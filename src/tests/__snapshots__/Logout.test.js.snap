@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logout component renders correctly 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+    type="submit"
+  >
+    Logout
+  </button>
+</div>
+`;
