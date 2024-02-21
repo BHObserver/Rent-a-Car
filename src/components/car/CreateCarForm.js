@@ -10,7 +10,7 @@ function CarForm() {
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
-  const [photoUrl, setPhotoUrl] = useState(''); // State for photo URL
+  const [photoUrl, setPhotoUrl] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function CarForm() {
       make,
       model,
       year: parseInt(year, 10),
-      photoUrl, // Include photo URL in the car data
+      photo_url: photoUrl,
       user_id: user.accessToken,
     };
     try {
@@ -61,7 +61,7 @@ function CarForm() {
           Photo URL:
           <input type="text" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
         </label>
-        <button type="submit">Create Car</button>
+        <button type="submit">Add Car</button>
       </form>
       {successMessage && <p>{successMessage}</p>}
     </div>
