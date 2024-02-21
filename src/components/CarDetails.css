@@ -1,89 +1,84 @@
 .car-details-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.car-details-left {
+  width: 60%;
+}
+
+.car-details-right {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 40%;
+  height: 182px;
+  overflow-y: hidden;
+  background-color: #5497e3a2;
+  padding: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.car-details-left h1 {
+  margin-bottom: 10px;
+}
+
+.car-details-left img {
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.773);
+}
+
+.detail {
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  font-weight: bold;
+}
+
+.detail-value {
+  margin-left: 5px;
+}
+
+.available {
+  color: green;
+}
+
+.not-available {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .car-details-container {
     display: flex;
-    justify-content: space-between;
-    margin: 20px;
+    flex-direction: column;
   }
-  
-  .car-details-left {
-    width: 60%;
-  }
-  
+
   .car-details-right {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width: 40%;
-    height: 182px;
-    overflow-y: hidden;
-    background-color: #5497e3a2;
-    padding: 20px;
-    color: rgb(255, 255, 255);
-  }
-  
-  .car-details-left h1 {
-    margin-bottom: 10px;
-  }
-  
-  .car-details-left img {
-    max-width: 100%;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.773);
-  }
-  
-  .detail {
-    margin-bottom: 10px;
-  }
-  
-  .detail-label {
-    font-weight: bold;
-  }
-  
-  .detail-value {
-    margin-left: 5px;
+    width: 100%;
   }
 
-  
-  .available {
-    color: green;
+  .car-details-left {
+    width: 100%;
   }
-  
-  .not-available {
-    color: red;
+
+  .button-container-reserve {
+    display: contents;
   }
-  
-  
 
-  @media (max-width: 768px) {
-
-    .car-details-container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .car-details-right {
-      width: 100%;
-    }
-
-    .car-details-left {
-      width: 100%;
-    }
-
-    .button-container-reserve {
-      display: contents;
-    }
-
-    .button-container-reserve button {
-      position: static;
-      float: right;
-      border-radius: 40px;
-    }
-
-    .content button {
-      position: static;
-    }
-    
-    .button-container-back button {
-      display: contents;
-      width: 30px;
-      height: 30px;
-    }
-  
+  .button-container-reserve button {
+    position: static;
+    float: right;
+    border-radius: 40px;
   }
+
+  .content button {
+    position: static;
+  }
+
+  .button-container-back button {
+    display: contents;
+    width: 30px;
+    height: 30px;
+  }
+}
