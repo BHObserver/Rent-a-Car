@@ -1,0 +1,35 @@
+.reservation-details {
+    color: #fff;
+    width: 700px;
+}
+
+.reservation-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reservation-item button {
+    width: 20px;
+}
+
+.user-reservations-container {
+    margin-top: 20px;
+  }
+  
+  .reservation-item {
+    margin-bottom: 10px;
+  }
+  
+  .no-reservations-msg {
+    margin-bottom: 20px;
+  }
+  
+  .reservation-details {
+    margin-bottom: 10px;
+  }
+  
+  .success-notice {
+    color: green;
+    margin-top: 10px;
+  }
+  
