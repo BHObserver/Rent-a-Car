@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Button, CircularProgress } from '@mui/material';
 import { fetchUserReservations, deleteReservation } from '../../redux/actions/reservationActions';
+import './UserReservation.css';
 
 const UserReservations = () => {
   const userId = useSelector((state) => state.auth.user);
@@ -28,13 +29,13 @@ const UserReservations = () => {
   }
 
   return (
-    <div className="delete-car-container">
+    <div className="user-reservations-container">
       {userReservations.length === 0 ? (
-        <Typography variant="body1">No reservations to delete.</Typography>
+        <Typography variant="body1" className="no-reservations-msg">No reservations to delete.</Typography>
       ) : (
         userReservations.map((reservation) => (
           <div key={reservation.id} className="reservation-item">
-            <Typography variant="body1">
+            <Typography variant="body1" className="reservation-details">
               Reserved Date:
               {' '}
               {reservation.reserved_date}
