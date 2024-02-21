@@ -100,10 +100,11 @@ function CarReservationForm() {
 
   const StyledIconButtonLeft = styled(IconButton)({
     position: 'absolute',
-    top: '10%',
-    left: '70px',
+    top: '30px',
+    left: '10px',
     transform: 'translateY(-50%)',
-    backgroundColor: '#2196f3',
+    backgroundColor: '#96bf01',
+    border: '1px solid #fff',
     color: 'white',
     width: '60px',
     height: '60px',
@@ -134,59 +135,63 @@ function CarReservationForm() {
       `}
       </style>
       <div className="form-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="reservation-form">
           <div className="input-container">
             <label>
               Reserved Date:
-              <input type="date" value={reservedDate} onChange={(e) => setReservedDate(e.target.value)} required />
+              <input type="date" className="input-field" value={reservedDate} onChange={(e) => setReservedDate(e.target.value)} required />
             </label>
             <label>
               Start Time:
-              <input type="datetime-local" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
+              <input type="datetime-local" className="input-field" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
             </label>
             <label>
               End Time:
-              <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
+              <input type="datetime-local" className="input-field" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
             </label>
             <label>
               Start Location:
-              <input type="text" value={startLocation} onChange={(e) => setStartLocation(e.target.value)} required />
+              <input type="text" className="input-field" value={startLocation} onChange={(e) => setStartLocation(e.target.value)} required />
             </label>
             <label>
               Destination:
-              <input type="text" value={destination} onChange={(e) => setDestination(e.target.value)} required />
+              <input type="text" className="input-field" value={destination} onChange={(e) => setDestination(e.target.value)} required />
             </label>
             <label>
               Total Cost:
-              <input type="number" value={totalCost} onChange={(e) => setTotalCost(e.target.value)} required />
+              <input type="number" className="input-field" value={totalCost} onChange={(e) => setTotalCost(e.target.value)} required />
             </label>
           </div>
           <div className="button-container">
             {showCarSelection && (
-            <button type="button" onClick={handleFindAvailableCars}>Find Available Cars</button>
+            <button type="button" onClick={handleFindAvailableCars} className="form-button">Find Available Cars</button>
             )}
             {showCarSelection && availableCars.length > 0 && (
-            <label>
-              Select a Car:
-              <select
-                value={selectedCarId}
-                onChange={(e) => setSelectedCarId(e.target.value)}
-                required
-              >
-                <option value="">Select a Car</option>
-                {availableCars.map((car) => (
-                  <option key={car.id} value={car.id}>
-                    {car.make}
-                    {' '}
-                    {car.model}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="select-container">
+              <label>
+                Select a Car:
+                <select
+                  value={selectedCarId}
+                  onChange={(e) => setSelectedCarId(e.target.value)}
+                  required
+                  className="select-car"
+                >
+                  <option value="">Select a Car</option>
+                  {availableCars.map((car) => (
+                    <option key={car.id} value={car.id}>
+                      {car.make}
+                      {' '}
+                      {car.model}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
             )}
-            <button type="submit">Submit</button>
+            <button type="submit" className="form-button">Submit</button>
           </div>
         </form>
+
         {error && <p className="error">{error}</p>}
         {successMessage && <p>{successMessage}</p>}
         {failureMessage && <p>{failureMessage}</p>}
