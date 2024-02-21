@@ -125,8 +125,6 @@ npm start
 <!-- INSTALL -->
 ### Install
 
-
-
 ### Usage
 
 To run the project, execute the following command:
