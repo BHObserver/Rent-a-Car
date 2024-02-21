@@ -40,6 +40,7 @@ const App = () => {
               <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/reserve" element={<Reserve />} />
+                <Route path="/reserve/:id" element={<Reserve />} />
                 <Route path="/my-reservations" element={<UserReservations />} />
                 <Route path="/add-item" element={<CreateCar />} />
                 <Route path="/delete-item" element={<DeleteCar />} />
