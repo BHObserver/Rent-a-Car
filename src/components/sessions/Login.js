@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import { login, clearError } from '../../redux/session/actions/authActions';
 import './LoginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Get navigate function from useNavigate hook
   const error = useSelector((state) => state.auth.error);
   const successMessage = useSelector((state) => state.auth.successMessage);
 
@@ -29,11 +30,12 @@ const LoginForm = () => {
     dispatch(login(email, password));
     setEmail('');
     setPassword('');
+    // Navigate to profile after successful login
+    navigate('/profile');
   };
 
   return (
     <div className="background">
-
       {error && <p className="error-message">{error}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
       <form className="login-form" onSubmit={handleLogin}>
