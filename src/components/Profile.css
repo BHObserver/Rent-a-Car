@@ -2,6 +2,10 @@
   margin: 20px;
 }
 
+.heading {
+  color: #fff;
+}
+
 .car-list-container {
   position: relative;
 }
