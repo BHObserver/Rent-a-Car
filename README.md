@@ -41,7 +41,7 @@
 <!-- INTRO -->
 # 📖 Rent a Car - Front-end <a name="about-project"></a>
 
-> - Rent a Car frontend is react forntend application for Rent a car. This applications is responsive and users can load, create, and delete cars and reservations. Users need to sign up or sign in to access application. They can sign up or sign in using the sign up and login forms.
+> - Rent a Car frontend is react forntend application for renting a car. This applications is responsive and users can load, create, and delete cars and reservations. Users need to sign up or sign in to access application. They can sign up or sign in using the sign up and login forms.
 
 ## 🛠 Built With <a name="built-with"></a>
 1. React
@@ -114,6 +114,7 @@ https://github.com/BHObserver/Rent-a-Car-frontend
 To setup this project, run this command:
 
 ```sh
+npm install
 npm start
 ```
 ### Prerequisites
@@ -124,7 +125,7 @@ npm start
 <!-- INSTALL -->
 ### Install
 
-Install this project with Iroko.
+
 
 ### Usage
 
