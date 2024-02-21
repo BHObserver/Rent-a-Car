@@ -15,7 +15,7 @@
     overflow-y: hidden;
     background-color: #5497e3a2;
     padding: 20px;
-    color: white;
+    color: rgb(255, 255, 255);
   }
   
   .car-details-left h1 {
@@ -49,3 +49,41 @@
     color: red;
   }
   
+  
+
+  @media (max-width: 768px) {
+
+    .car-details-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .car-details-right {
+      width: 100%;
+    }
+
+    .car-details-left {
+      width: 100%;
+    }
+
+    .button-container-reserve {
+      display: contents;
+    }
+
+    .button-container-reserve button {
+      position: static;
+      float: right;
+      border-radius: 40px;
+    }
+
+    .content button {
+      position: static;
+    }
+    
+    .button-container-back button {
+      display: contents;
+      width: 30px;
+      height: 30px;
+    }
+  
+  }
