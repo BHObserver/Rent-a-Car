@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchCars } from '../redux/actions/carActions';
 import CarCarousel from './CarCarousel';
 import CarCard from './CarCard';
+import './Profile.css';
 
 const Container = styled('div')({
   textAlign: 'center',
@@ -48,7 +49,7 @@ const Profile = () => {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        Car List
+        <h3 className="heading"> List of Cars </h3>
       </Typography>
       {loading && <Spinner />}
       {error && (
