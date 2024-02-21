@@ -6,6 +6,7 @@ import {
 import { styled } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import EventIcon from '@mui/icons-material/Event';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -81,7 +82,7 @@ const Sidebar = () => {
             <ListItemText primary="Reserve" />
           </ListItem>
           <ListItem button component={NavLink} to="/my-reservations" activeClassName="active">
-            <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
+            <ListItemIcon><EventIcon /></ListItemIcon>
             <ListItemText primary="My Reservations" />
           </ListItem>
           <ListItem button component={NavLink} to="/add-item" activeClassName="active">
@@ -95,7 +96,7 @@ const Sidebar = () => {
         </List>
         <Divider />
         <List>
-          <ListItem button onClick={handleLogout} to="/login">
+          <ListItem button component={NavLink} onClick={handleLogout} to="/login">
             <ListItemIcon><LogoutIcon /></ListItemIcon>
             <ListItemText primary="Logout" />
           </ListItem>
