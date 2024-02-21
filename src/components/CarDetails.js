@@ -63,15 +63,17 @@ const CarDetails = () => {
 
   return (
     <>
-      <StyledIconButtonLeft
-        aria-label="back to profile"
-        onClick={() => navigate('/profile/')}
-        sx={{ mr: 2 }}
-      >
-        <ArrowBack />
-      </StyledIconButtonLeft>
       <div className="car-details-container">
         <div className="car-details-left">
+          <div className="button-container-back">
+            <StyledIconButtonLeft
+              aria-label="back to profile"
+              onClick={() => navigate('/profile')}
+              sx={{ mr: 2 }}
+            >
+              <ArrowBack />
+            </StyledIconButtonLeft>
+          </div>
           <img src={car.photo_url} alt={car.name} />
         </div>
         <div className="car-details-right">
@@ -88,20 +90,22 @@ const CarDetails = () => {
             <span className="detail-label">Year:</span>
             <span className="detail-value">{car.year}</span>
           </div>
-          {car.available ? (
-            <StyledReserveButton
-              aria-label="reserve"
-              onClick={handleReserveClick}
-              className="reserve-button"
-            >
-              <LocalTaxi />
-              Reserve Now!
-            </StyledReserveButton>
-          ) : (
-            <div className="not-available">
-              Not available
-            </div>
-          )}
+          <div className="button-container-reserve">
+            {car.available ? (
+              <StyledReserveButton
+                aria-label="reserve"
+                onClick={handleReserveClick}
+                className="reserve-button"
+              >
+                <LocalTaxi />
+                Reserve Now!
+              </StyledReserveButton>
+            ) : (
+              <div className="not-available">
+                Not available
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
