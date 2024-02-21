@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .reservation-page {
@@ -12,6 +12,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -24,6 +25,10 @@
   z-index: -1;
 }
 
+label {
+  color: #fff;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -34,10 +39,9 @@
 }
 
 .input-container {
-  display: flex;
   width: 100%;
   gap: 10px;
-  height: auto; 
+  height: auto;
 }
 
 .input-container input {
@@ -46,7 +50,9 @@
   padding: 12px;
   border: none;
   outline: none;
+  border: 1px solid #fff;
   border-radius: 5px;
+  box-shadow: 0.3px 0.3px black;
 }
 
 .button-container {
@@ -57,16 +63,62 @@
 }
 
 .button-container button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #96bf01;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #fff;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+    width: 214px;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
 }
 
 .button-container button:hover {
   background-color: #0056b3;
 }
+
+.select-container {
+  position: relative;
+  margin-bottom: 20px;
+  width: 214px;
+}
+
+.select-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #77950d;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 5px;
+  appearance: none;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 20px;
+  color: #77950d;
+  outline: none;
+}
+
+.select-container select:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensure the arrow doesn't interfere with the select functionality */
+}
+
+.select-arrow::before {
+  content: '\\25BC'; /* Unicode character for down arrow */
+  font-size: 0.8em;
+  color: #888;
+}
+
 
 .error {
   color: red;
@@ -76,4 +128,10 @@
 .success {
   color: green;
   margin-top: 10px;
+}
+
+@media (min-width: 1024px) {
+  .input-container {
+    display: flex;
+  }
 }
