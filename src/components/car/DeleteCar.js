@@ -5,7 +5,7 @@ import {
   Typography, Button, List, ListItem, ListItemText,
 } from '@mui/material';
 import { fetchCars, deleteCar } from '../../redux/actions/carActions';
-/* import './DeleteCar.css'; */
+import './DeleteCar.css';
 
 function DeleteCar() {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ function DeleteCar() {
 
   return (
     <div className="delete-car-container">
+      <h1>Your Cars</h1>
       {successMessage && <Typography variant="body1">{successMessage}</Typography>}
       {userCars.length === 0 ? (
         <Typography variant="body1">You have not added any car.</Typography>
