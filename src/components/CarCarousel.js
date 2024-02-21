@@ -4,6 +4,7 @@ import { Grid, IconButton } from '@mui/material';
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import CarCard from './CarCard';
+import './CarCarousel.css';
 
 // Styled components
 const CarouselContainer = styled('div')({
@@ -47,17 +48,19 @@ const CarCarousel = ({
   cars, currentIndex, handlePrev, handleNext,
 }) => (
   <CarouselContainer>
-    <StyledIconButtonRight onClick={handleNext} disabled={currentIndex === cars.length - 1}>
-      <ArrowForward />
-    </StyledIconButtonRight>
-    <Grid container spacing={0}>
-      <Grid item xs={12}>
-        <CarCard car={cars[currentIndex]} />
+    <div className="carousel-container">
+      <StyledIconButtonLeft onClick={handlePrev} disabled={currentIndex === 0}>
+        <ArrowBack />
+      </StyledIconButtonLeft>
+      <Grid container spacing={0}>
+        <Grid item xs={12}>
+          <CarCard car={cars[currentIndex]} />
+        </Grid>
       </Grid>
-    </Grid>
-    <StyledIconButtonLeft onClick={handlePrev} disabled={currentIndex === 0}>
-      <ArrowBack />
-    </StyledIconButtonLeft>
+      <StyledIconButtonRight onClick={handleNext} disabled={currentIndex === cars.length - 1}>
+        <ArrowForward />
+      </StyledIconButtonRight>
+    </div>
   </CarouselContainer>
 );
 
