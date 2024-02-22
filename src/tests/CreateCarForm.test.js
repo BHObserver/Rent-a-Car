@@ -21,11 +21,11 @@ describe('CarForm component', () => {
         <CarForm />
       </Provider>,
     );
-    const nameInput = getByLabelText('Name');
-    const makeInput = getByLabelText('Make');
-    const modelInput = getByLabelText('Model');
-    const yearInput = getByLabelText('Year');
-    const submitButton = getByText('Create Car');
+    const nameInput = getByLabelText('Name:');
+    const makeInput = getByLabelText('Make:');
+    const modelInput = getByLabelText('Model:');
+    const yearInput = getByLabelText('Year:');
+    const submitButton = getByText('Add Car');
 
     fireEvent.change(nameInput, { target: { value: 'Test Car' } });
     fireEvent.change(makeInput, { target: { value: 'Test Make' } });

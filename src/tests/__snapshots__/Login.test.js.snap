@@ -38,6 +38,7 @@ exports[`LoginForm component renders correctly 1`] = `
       value=""
     />
     <button
+      className="submit-btn"
       type="submit"
     >
       Login

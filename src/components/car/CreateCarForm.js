@@ -16,6 +16,8 @@ function CarForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
+    const userId = user ? user.accessToken : null;
+
     event.preventDefault();
     const carData = {
       name,
@@ -23,7 +25,8 @@ function CarForm() {
       model,
       year: parseInt(year, 10),
       photo_url: photoUrl,
-      user_id: user.accessToken,
+      user_id: userId,
+      // user_id: user.accessToken,
     };
     try {
       await dispatch(createCar(carData));
