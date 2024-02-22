@@ -39,13 +39,13 @@ const Sidebar = () => {
         sx={{
           display: 'flex',
           zIndex: 1,
-          alignItems: 'flex-start', // Position sidebar to the top-left corner
+          alignItems: 'flex-start',
           justifyContent: 'flex-start',
           width: '20px',
           height: '20px',
           padding: '10px',
           color: '#fff',
-        }} // Adjust position as needed
+        }}
       >
         <MenuIcon />
       </IconButton>

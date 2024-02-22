@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useParams, useNavigate } from 'react-router-dom';
 import { CircularProgress, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import { ArrowBack, LocalTaxi } from '@mui/icons-material';
-import { fetchCarById } from '../redux/actions/carActions';
-import './CarDetails.css'; // Import CSS file for styling
+import { fetchCarById } from '../../redux/actions/carActions';
+import './styles/CarDetails.css';
 
 const CarDetails = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Get navigate function
+  const navigate = useNavigate();
   const { id } = useParams();
   const { car, isLoading, error } = useSelector((state) => state.car);
   const carId = Number(id);

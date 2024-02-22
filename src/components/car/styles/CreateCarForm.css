@@ -39,3 +39,7 @@ label {
 .car-form-container p {
   margin-top: 10px;
 }
+
+.success-message {
+  color: green;
+}

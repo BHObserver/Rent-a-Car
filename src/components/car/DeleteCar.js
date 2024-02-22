@@ -1,21 +1,26 @@
 // DeleteCar.js
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import {
   Typography, Button, List, ListItem, ListItemText,
 } from '@mui/material';
 import { fetchCars, deleteCar } from '../../redux/actions/carActions';
-import './DeleteCar.css';
+import './styles/DeleteCar.css';
 
 function DeleteCar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const cars = useSelector((state) => state.car.cars.cars) || [];
   const [successMessage, setSuccessMessage] = useState('');
-
   useEffect(() => {
     dispatch(fetchCars());
   }, [dispatch]);
+
+  const handleClick = (carId) => {
+    navigate(`/cars/${carId}`);
+  };
 
   const handleDelete = async (carId) => {
     try {
@@ -39,7 +44,7 @@ function DeleteCar() {
         <List>
           {userCars.map((car) => (
             <ListItem key={car.id}>
-              <ListItemText primary={car.name} />
+              <ListItemText primary={car.name} onClick={() => handleClick(car.id)} />
               <Button variant="contained" color="error" onClick={() => handleDelete(car.id)}>
                 Delete
               </Button>

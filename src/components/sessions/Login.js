@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import { login, clearError } from '../../redux/session/actions/authActions';
-import './LoginForm.css';
+import './styles/LoginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();

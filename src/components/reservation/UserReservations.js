@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Button, CircularProgress } from '@mui/material';
 import { fetchUserReservations, deleteReservation } from '../../redux/actions/reservationActions';
-import './UserReservation.css';
+import './styles/UserReservation.css';
 
 const UserReservations = () => {
   const userId = useSelector((state) => state.auth.user);
@@ -25,11 +25,18 @@ const UserReservations = () => {
   };
 
   if (isLoading) {
-    return <CircularProgress />;
+    return (
+      <CircularProgress
+        sx={{
+          color: '#fff',
+        }}
+      />
+    );
   }
 
   return (
     <div className="user-reservations-container">
+      <h2>My Reservations</h2>
       {userReservations.length === 0 ? (
         <Typography variant="body1" className="no-reservations-msg">No reservations to delete.</Typography>
       ) : (

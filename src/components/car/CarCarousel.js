@@ -4,9 +4,8 @@ import { Grid, IconButton } from '@mui/material';
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import CarCard from './CarCard';
-import './CarCarousel.css';
+import './styles/CarCarousel.css';
 
-// Styled components
 const CarouselContainer = styled('div')({
   margin: '20px auto',
   maxWidth: '100%',

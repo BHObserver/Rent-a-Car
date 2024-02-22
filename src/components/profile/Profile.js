@@ -1,12 +1,11 @@
-// Profile.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
-import { fetchCars } from '../redux/actions/carActions';
-import CarCarousel from './CarCarousel';
-import CarCard from './CarCard';
+import { fetchCars } from '../../redux/actions/carActions';
+import CarCarousel from '../car/CarCarousel';
+import CarCard from '../car/CarCard';
 import './Profile.css';
 
 const Container = styled('div')({
@@ -32,23 +31,21 @@ const Profile = () => {
     dispatch(fetchCars());
   }, [dispatch]);
 
-  const handlePrev = () => {
+  const handlePrev = async () => {
     setCurrentIndex((prevIndex) => Math.max(0, prevIndex - 1));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     setCurrentIndex((prevIndex) => Math.min(cars.length - 1, prevIndex + 1));
   };
 
-  // Callback function to handle navigation to car details page
   const handleCardClick = (carId) => {
-    console.log(`Navigating to car details for car with ID: ${carId}`);
     navigate(`/cars/${carId}`); // Use navigate to navigate to the car details page
   };
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         <h3 className="heading"> List of Cars </h3>
       </Typography>
       {loading && <Spinner />}
@@ -59,12 +56,14 @@ const Profile = () => {
           {error}
         </ErrorText>
       )}
+      {/* Check if cars is defined before mapping */}
       {cars && cars.length > 0 && (
         <CarCarousel
           cars={cars}
           currentIndex={currentIndex}
           handlePrev={handlePrev}
           handleNext={handleNext}
+          loading={loading}
         >
           {/* Render CarCard inside CarCarousel */}
           {cars.map((car) => (

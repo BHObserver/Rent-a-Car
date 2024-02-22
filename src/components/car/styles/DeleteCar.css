@@ -16,7 +16,10 @@
 .delete-car-container ul li {
   display: flex;
   justify-content: space-between;
+  padding: 2px;
+  margin: 20px;
   width: 300px;
+  cursor: pointer;
 }
 
 .delete-car-container button {

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,7 +6,7 @@ import { styled } from '@mui/system';
 import { ArrowBack } from '@mui/icons-material';
 import { fetchCars } from '../../redux/actions/carActions';
 import { createReservation } from '../../redux/actions/reservationActions';
-import './CarReservationForm.css';
+import './styles/CarReservationForm.css';
 
 function CarReservationForm() {
   const [reservedDate, setReservedDate] = useState('');
@@ -82,7 +81,7 @@ function CarReservationForm() {
       setAvailableCars(updatedAvailableCars);
       // If a car was selected from the details page, reset the selectedCarId
       setSelectedCarId('');
-      navigate('/profile'); // Navigate back to profile after reservation
+      navigate('/my-reservations'); // Navigate back  my-reservations after reservation
     } catch (error) {
       setFailureMessage('Error reserving car');
     }
@@ -119,7 +118,7 @@ function CarReservationForm() {
       <StyledIconButtonLeft
         aria-label="back to profile"
         onClick={() => navigate('/profile')}
-        sx={{ mr: 2 }} // Adjust margin as needed
+        sx={{ mr: 2 }}
       >
         <ArrowBack />
       </StyledIconButtonLeft>
@@ -128,7 +127,7 @@ function CarReservationForm() {
         .MuiDrawer-root.MuiDrawer-docked.css-q56gz0-MuiDrawer-docked {
           display: ${isOnReservationPage ? 'none' : 'block'};
         }
-        main {
+        .app {
           background-image: linear-gradient(#96bf01ad, #a3cb14bc), url(https://www.travelperk.com/wp-content/uploads/car-rental-companies-1-scaled.jpg);
           background-size: cover;
         }
@@ -137,27 +136,27 @@ function CarReservationForm() {
       <div className="form-container">
         <form onSubmit={handleSubmit} className="reservation-form">
           <div className="input-container">
-            <label>
+            <label htmlFor="form">
               Reserved Date:
               <input type="date" className="input-field" value={reservedDate} onChange={(e) => setReservedDate(e.target.value)} required />
             </label>
-            <label>
+            <label htmlFor="form">
               Start Time:
               <input type="datetime-local" className="input-field" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
             </label>
-            <label>
+            <label htmlFor="form">
               End Time:
               <input type="datetime-local" className="input-field" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
             </label>
-            <label>
+            <label htmlFor="form">
               Start Location:
               <input type="text" className="input-field" value={startLocation} onChange={(e) => setStartLocation(e.target.value)} required />
             </label>
-            <label>
+            <label htmlFor="form">
               Destination:
               <input type="text" className="input-field" value={destination} onChange={(e) => setDestination(e.target.value)} required />
             </label>
-            <label>
+            <label htmlFor="form">
               Total Cost:
               <input type="number" className="input-field" value={totalCost} onChange={(e) => setTotalCost(e.target.value)} required />
             </label>
@@ -168,7 +167,7 @@ function CarReservationForm() {
             )}
             {showCarSelection && availableCars.length > 0 && (
             <div className="select-container">
-              <label>
+              <label htmlFor="form">
                 Select a Car:
                 <select
                   value={selectedCarId}

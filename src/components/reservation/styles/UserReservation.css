@@ -1,3 +1,7 @@
+.user-reservations-container {
+  color: #fff;
+}
+
 .reservation-details {
   color: #fff;
   width: 700px;
@@ -12,6 +16,7 @@
 
 .reservation-item button {
   width: 20px;
+  height: fit-content;
 }
 
 .user-reservations-container {
@@ -23,6 +28,6 @@
 }
 
 .success-notice {
-  color: green;
+  color: rgb(248, 191, 110);
   margin-top: 10px;
 }

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp, clearError } from '../../redux/session/actions/authActions';
-import './SignUpForm.css';
+import './styles/SignUpForm.css';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();

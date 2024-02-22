@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import './CarCard.css'; // Import CSS file for styling
+import './styles/CarCard.css';
 
 const CarCard = ({ car }) => {
   const navigate = useNavigate();
