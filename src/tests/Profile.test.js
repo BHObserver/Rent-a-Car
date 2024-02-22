@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
@@ -11,20 +12,23 @@ describe('Profile component', () => {
     // Mock the Redux state
     const initialState = {
       car: {
-        cars: [], // Mock the cars array or provide sample data if needed
+        cars: [],
         loading: false,
         error: null,
       },
-      // Add other slices of state if needed
     };
 
     // Create a mock store instance
     const store = mockStore(initialState);
 
     const tree = renderer.create(
-      <Provider store={store}>
-        <Profile />
-      </Provider>,
+      <Router>
+        {' '}
+        {/* Wrap Profile with BrowserRouter */}
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </Router>,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
