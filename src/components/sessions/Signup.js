@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { signUp, clearError } from '../../redux/session/actions/authActions';
 import './styles/SignUpForm.css';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
   const successMessage = useSelector((state) => state.auth.successMessage);
 
@@ -33,6 +35,7 @@ const SignUpForm = () => {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
+      navigate('/profile');
     } else {
       console.log('Passwords do not match');
     }

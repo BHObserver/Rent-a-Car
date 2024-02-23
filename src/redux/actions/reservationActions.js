@@ -26,6 +26,7 @@ export const createReservation = (reservationData) => async (dispatch) => {
   try {
     const response = await axios.post('http://localhost:3000/api/v1/reservations', { reservation: reservationData });
     // Dispatch action for successful reservation creation
+    localStorage.setItem('accessToken', response.data.id);
     dispatch(reservationCreateSuccess(response.data));
   } catch (error) {
     // Dispatch action for reservation creation failure
