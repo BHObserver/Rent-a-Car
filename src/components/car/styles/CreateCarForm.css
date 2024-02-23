@@ -3,11 +3,16 @@ label {
 }
 
 .car-form-container {
+  color: #fff;
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.car-form-container h2 {
+  text-align: center;
 }
 
 .car-form-container form label {
