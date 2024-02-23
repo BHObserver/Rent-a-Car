@@ -16,11 +16,7 @@
 
 .reservation-item button {
   width: 20px;
-  height: fit-content;
-}
-
-.user-reservations-container {
-  margin-top: 20px;
+  height: max-content;
 }
 
 .no-reservations-msg {
