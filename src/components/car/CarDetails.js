@@ -90,6 +90,13 @@ const CarDetails = () => {
             <span className="detail-label">Year:</span>
             <span className="detail-value">{car.year}</span>
           </div>
+          <div className="detail">
+            <span className="detail-label">Cost (Per Hour):</span>
+            <span className="detail-value">
+              {car.cost}
+              $
+            </span>
+          </div>
           <div className="button-container-reserve">
             {car.available ? (
               <StyledReserveButton
