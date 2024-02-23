@@ -9,9 +9,10 @@ function CarForm() {
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
+  const [cost, setCost] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // New state for error message
+  const [errorMessage, setErrorMessage] = useState('');
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function CarForm() {
       make,
       model,
       year: parseInt(year, 10),
+      cost,
       photo_url: photoUrl,
       user_id: userId,
     };
@@ -36,6 +38,7 @@ function CarForm() {
       setMake('');
       setModel('');
       setYear('');
+      setCost('');
       setPhotoUrl('');
       setErrorMessage('');
       navigate('/delete-item');
@@ -48,6 +51,7 @@ function CarForm() {
   return (
     <div className="car-form-container">
       <form onSubmit={handleSubmit}>
+        <h2>Add a Car</h2>
         <label htmlFor="form">
           Name:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -63,6 +67,10 @@ function CarForm() {
         <label htmlFor="form">
           Year:
           <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
+        </label>
+        <label htmlFor="form">
+          Cost (Per Hour):
+          <input type="text" value={cost} onChange={(e) => setCost(e.target.value)} />
         </label>
         <label htmlFor="form">
           Photo URL:
