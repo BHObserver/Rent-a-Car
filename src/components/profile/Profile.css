@@ -1,0 +1,84 @@
+.profile-container {
+  margin: 20px;
+}
+
+.heading {
+  color: #fff;
+}
+
+.car-list-container {
+  position: relative;
+}
+
+.carousel-container {
+  position: relative;
+}
+
+.prev-btn {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: #000;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+}
+
+.next-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: #c79a12cd;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+}
+
+.car-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.car-item {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.car-photo {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.car-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.car-model {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.car-details {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.car-city,
+.car-cost {
+  font-size: 14px;
+  color: #888;
+}

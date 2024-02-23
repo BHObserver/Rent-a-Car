@@ -1,0 +1,27 @@
+
+.delete-car-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100%;
+}
+
+.delete-car-container span {
+  font-size: 24px;
+  height: auto;
+}
+
+.delete-car-container ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+  margin: 20px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.delete-car-container button {
+  width: 20px;
+}

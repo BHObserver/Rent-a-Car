@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarForm component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="car-form-container"
+  >
+    <form>
+      <label>
+        Name:
+        <input
+          required=""
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        Make:
+        <input
+          required=""
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        Model:
+        <input
+          required=""
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        Year:
+        <input
+          required=""
+          type="number"
+          value=""
+        />
+      </label>
+      <label>
+        Photo URL:
+        <input
+          type="text"
+          value=""
+        />
+      </label>
+      <button
+        type="submit"
+      >
+        Add Car
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

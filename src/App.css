@@ -1,0 +1,22 @@
+body {
+  background-image: url('https://wallpaper.dog/large/20395963.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.app {
+  display: flex;
+}
+
+.contents {
+  flex: 1;
+  padding: 20px;
+}
+
+.contents h2 {
+  margin-bottom: 20px;
+}
+
+* {
+  overflow-x: hidden;
+}
